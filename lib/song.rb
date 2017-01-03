@@ -50,10 +50,12 @@ class Song
   end
 
   def self.new_from_filename(name)
-    index = name.index("-") + 2
-    file_extension = name.index(".")
-    new_song = name.slice(index, file_extension).split(".")[0].to_s
-    song = self.create_by_name(name.slice(0,index -1))
+    parsed_name = name.split(" - ")
+    parsed_artist = parsed_name[1].split(".")[0]
+    song = self.new
+    song.name = parsed_name[0]
+    song.artist = parsed_artist
+    song
   end
 
   def self.create_from_filename
