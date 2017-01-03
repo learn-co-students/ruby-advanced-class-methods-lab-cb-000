@@ -51,14 +51,20 @@ class Song
 
   def self.new_from_filename(name)
     parsed_name = name.split(" - ")
-    parsed_artist = parsed_name[1].split(".")[0]
+    parsed_artist = parsed_name[0]
     song = self.new
-    song.name = parsed_name[0]
-    song.artist = parsed_artist
+    song.name = parsed_name[1].split(".")[0]
+    song.artist_name = parsed_artist
     song
   end
 
-  def self.create_from_filename
+  def self.create_from_filename(name)
+    parsed_name = name.split(" - ")
+    parsed_artist = parsed_name[0]
+    song = self.create
+    song.name = parsed_name[1].split(".")[0]
+    song.artist_name = parsed_artist
+    song
   end
 
   def self.destroy_all
