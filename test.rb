@@ -45,35 +45,30 @@ class Song
     end
   end
 
-  def self.alphabetical
-    song_t=[]
-    self.all.each do |s|
-      song_t << s.name
-    end
-    song_t.sort.collect do |s|
-      self.find_by_name(s)
-    end
-  end
 
-  def self.new_from_filename(filename)
-    data = filename.split(/[-.]/)
-    song = self.new
-    song.name = data[1].strip
-    song.artist_name = data[0].strip
-    return song
-  end
-
-  def self.create_from_filename(filename)
-    data = filename.split(/[-.]/)
-    song = self.create
-    song.name = data[1].strip
-    song.artist_name = data[0].strip
-    return song
-  end
-
-def self.destroy_all
-  self.all.clear
 end
 
 
+s1 = Song.create_by_name("Song 1")
+s2 = Song.create_by_name("Song 2")
+
+puts Song.all
+puts "#{s1} - \"#{s1.name}\""
+puts "#{s2} - \"#{s2.name}\""
+
+puts 'Finding "Song 1"'
+puts Song.find_by_name("Song 1")
+
+puts 'Finding "Song 3"'
+puts Song.find_by_name("Song 3")
+
+puts 'Finding "Song 1" try #2'
+puts Song.find_or_create_by_name("Song 1")
+
+puts 'Finding "Song 3" try #2'
+puts Song.find_or_create_by_name("Song 3")
+
+puts Song.all
+Song.all.each do |s|
+  puts "#{s} - \"#{s.name}\""
 end
