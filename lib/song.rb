@@ -59,6 +59,8 @@ class Song
 
   def self.destroy_all
     self.all.clear
-  end 
+  end
+
+#new comment since pull request is not showing up
 
 end
