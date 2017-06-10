@@ -36,8 +36,8 @@ class Song
 
   def self.new_from_filename(name)
     song = self.new
-    name_of_artist = name.match(/\-(.*?)\./).strip
-    song.name = name_of_artist
+    name_of_artist = name.split(/\-(.*?)\./)
+    song.name = name_of_artist[1]
     all << song
     song
   end
