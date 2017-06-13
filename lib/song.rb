@@ -35,10 +35,12 @@ class Song
   end
 
   def self.new_from_filename(name)
+    name_array = name.split(" - ")
+    name_array.collect! { |x| x.gsub(".mp3", "")}
+
     song = self.new
-    name_of_artist = name.split(/\-(.*?)\./)
-    song.name = name_of_artist[1]
-    all << song
+    song.artist_name = name_array[0]
+    song.name = name_array[1]
     song
   end
 
