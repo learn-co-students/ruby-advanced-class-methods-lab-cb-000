@@ -9,16 +9,14 @@ class Song
   end
 
   def self.new_by_name(name)
-    song = self.new
+    song = self.create
     song.name = name
-    all << song
     song
   end
 
   def self.create_by_name(name)
-    song = self.new
+    song = self.create
     song.name = name
-    all << song
     song
   end
 
@@ -48,8 +46,7 @@ class Song
     name_array = filename.split(" - ")
     name_array.collect! { |x| x.gsub(".mp3", "")}
 
-    song = self.new
-    all << song
+    song = self.create
     song.artist_name = name_array[0]
     song.name = name_array[1]
     song
