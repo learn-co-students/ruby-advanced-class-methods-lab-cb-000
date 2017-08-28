@@ -10,4 +10,57 @@ class Song
     self.class.all << self
   end
 
+  def self.create
+    song = Song.new
+    song.save
+    song
+  end
+
+  def self.new_by_name(song_name)
+    song = self.new
+    song.name = song_name
+    song
+  end
+
+  def self.create_by_name(song_name)
+    song = self.create
+    song.name = song_name
+    song
+  end
+
+  def self.find_by_name(song_name)
+    self.all.detect { |e| e.name == song_name  }
+  end
+
+  def self.find_or_create_by_name(song_name)
+    self.find_by_name(song_name) || self.create_by_name(song_name)
+  end
+
+  def self.alphabetical
+    self.all.sort_by {|e| e.name}
+  end
+
+  def self.new_from_filename(file)
+    r_mp3 = file.sub(".mp3", "")
+    info = r_mp3.split(" - ")
+    song_name = info[1]
+    artist_name = info[0]
+
+    song = self.create
+    song.name = song_name
+    song.artist_name = artist_name
+    song
+  end
+
+  def self.create_from_filename(file)
+    song = self.new_from_filename(file)
+    song.save
+  end
+
+  def self.destroy_all
+    self.all.clear
+  end
+
+#new comment since pull request is not showing up
+
 end
