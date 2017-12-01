@@ -25,4 +25,12 @@ class Song
     return song # return the song instance
   end
 
+  # instantiates and saves a song with a name property
+  def self.create_by_name(name) # 1. build a class constructor Song.create_by_name that takes in the string name of a song
+    song = Song.new # 1. initialize a song
+    song.name = name # 2. set the song's name property equal to the argument that is passed
+    song.save # 3. save the song into the @@all class variable
+    return song # 4. return the song instance
+  end
+
 end
