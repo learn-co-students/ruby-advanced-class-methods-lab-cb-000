@@ -39,4 +39,11 @@ class Song
     @@all.detect{|song| song.name == name} # use the #detect method to return the first object that has a @name property equal to the argument that is passed
   end
 
+  # invokes .find_by_name and .create_by_name instead of repeating code
+  # returns the existing Song object (doesn't create a new one) when provided the title of an existing Song
+  # creates a new Song object with the provided title if one doesn't already exist
+  def self.find_or_create_by_name(name)
+    return self.find_by_name(name) || self.create_by_name(name)
+  end
+
 end
