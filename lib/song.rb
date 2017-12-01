@@ -46,4 +46,9 @@ class Song
     return self.find_by_name(name) || self.create_by_name(name)
   end
 
+  # returns all the song instances in alphabetical order by song name
+  def self.alphabetical
+    @@all.sort_by {|song| song.name} # sort_by method: https://apidock.com/ruby/Enumerable/sort_by
+  end
+
 end
