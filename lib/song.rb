@@ -18,4 +18,11 @@ class Song
     return song # 4. this method should return the song instance that was initialized and saved.
   end
 
+  # instantiate a song with a name property
+  def self.new_by_name(name)
+    song = Song.new # 1. intialize a song
+    song.name = name # 2. set the song's name equal to the argument that is passed
+    return song # return the song instance
+  end
+
 end
