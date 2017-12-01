@@ -34,4 +34,9 @@ class Song
     return song # 4. return the song instance
   end
 
+  # find a song present in @@all by name
+  def self.find_by_name(name)
+    @@all.detect{|song| song.name == name} # use the #detect method to return the first object that has a @name property equal to the argument that is passed
+  end
+
 end
