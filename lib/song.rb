@@ -91,6 +91,7 @@ class Song
 end
 
 =begin
+
 note on what not to do (new_from_filename method):
 * song_title = song_details[1].split(".mp3") returns an array:
   expected: "For Love I Come"
@@ -108,8 +109,5 @@ what works instead:
 * song_title = song_details[1].gsub(".mp3", "") replaces the string '.mp3' with '' (https://apidock.com/ruby/String/gsub)
   expected: "Blank Space"
   got: "Blank Space"
-
-
-
 
 =end
