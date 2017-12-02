@@ -51,4 +51,38 @@ class Song
     @@all.sort_by {|song| song.name} # sort_by method: https://apidock.com/ruby/Enumerable/sort_by
   end
 
+  # initializes a song and artist_name based on the filename format
+  # *** see notes at end of page
+  def self.new_from_filename(filename) # build a class constructor that accepts a filename in the format of " - .mp3", for example "Taylor Swift - Blank Space.mp3"
+    # the filename must be parsed for the relevant components (song name and artist name)
+    song_details = filename.split(" - ") # Separate the artist name from the rest of the data based on the - delimiter
+    song_artist = song_details[0]
+    song_title = song_details[1].split(".mp3").join("") # when parsing the song name, remove the '.mp3' part of the string
+
+    song = self.new # initialize a song
+    song.name = song_title
+    song.artist_name = song_artist
+    return song # return a new Song instance with the song name set to Blank Space and the artist_name set to Taylor Swift
+  end
+
 end
+
+=begin
+note on what not to do (new_from_filename method):
+* song_title = song_details[1].split(".mp3") returns an array:
+  expected: "For Love I Come"
+  got: ["For Love I Come"]
+
+* song_title = song_details[1].delete(".mp3") removes all matching letters:
+  expected: "Blank Space"
+  got: "Blank Sace"
+
+what works instead:
+* song_title = song_details[1].split(".mp3").join("") turns array into string --> OK
+  expected: "Blank Space"
+  got: "Blank Space"
+
+* song_title = song_details[1].gsub(".mp3", "") replaces the string '.mp3' with '' (https://apidock.com/ruby/String/gsub)
+  expected: "Blank Space"
+  got: "Blank Space"
+=end
