@@ -65,6 +65,24 @@ class Song
     return song # return a new Song instance with the song name set to Blank Space and the artist_name set to Taylor Swift
   end
 
+  # initializes and saves a song and artist_name based on the filename format
+  def self.create_from_filename (filename)
+    # parse filename
+    song_details = filename.split(" - ")
+    song_artist = song_details[0]
+    song_title = song_details[1].split(".mp3").join("")
+
+    # initialize and save a song
+    song = self.create
+
+    # set song properties
+    song.name = song_title
+    song.artist_name = song_artist
+
+    # return initialized song with properties
+    return song
+  end
+
 end
 
 =begin
@@ -85,4 +103,8 @@ what works instead:
 * song_title = song_details[1].gsub(".mp3", "") replaces the string '.mp3' with '' (https://apidock.com/ruby/String/gsub)
   expected: "Blank Space"
   got: "Blank Space"
+
+
+
+
 =end
