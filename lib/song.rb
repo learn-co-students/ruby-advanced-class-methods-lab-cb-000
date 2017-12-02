@@ -11,7 +11,7 @@ class Song
     self.class.all << self
   end
 
-  # instantiate and save the song, and return the new song that was created)
+  # instantiate and save the song, and return the new song that was created
   def self.create # 1. build a class constructor Song.create
     song = Song.new # 2. that initializes a song
     song.save # 3. and saves it to the @@all class variable
