@@ -83,6 +83,11 @@ class Song
     return song
   end
 
+  # clears all the song instances from the @@all array
+  def self.destroy_all
+    @@all.clear
+    #  self.all.clear # (alternative)
+  end
 end
 
 =begin
