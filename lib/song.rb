@@ -1,3 +1,4 @@
+require 'pry'
 class Song
   attr_accessor :name, :artist_name
   @@all = []
@@ -40,5 +41,33 @@ class Song
       self.create_by_name(name)
     end
   end
+  
+  def self.alphabetical
+    self.all.sort_by {|song| song.name}
+  end
+  
+  def self.new_from_filename(filename)
+    filename_array = filename.split(" - ")
+    artist = filename_array[0]
+    title = filename_array[1][0..-5]
+    song = self.new
+    song.name = title
+    song.artist_name = artist
+    song
+  end
 
+  def self.create_from_filename(filename)
+    filename_array = filename.split(" - ")
+    artist = filename_array[0]
+    title = filename_array[1][0..-5]
+    song = self.new
+    song.name = title
+    song.artist_name = artist
+    self.all << song
+    song
+  end
+  
+  def self.destroy_all
+    self.all.clear
+  end
 end
