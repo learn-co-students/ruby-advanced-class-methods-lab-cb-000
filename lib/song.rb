@@ -41,9 +41,23 @@ def self.find_or_create_by_name(songname)
   end
 end
 
+def self.alphabetical
+  @@all.sort_by {|song| song.name}
+end
+
 def self.destroy_all
   @@all.clear
 end
 
+def self.new_from_filename(filename)
+  array = filename.split(" - ")
+  self.new array[1].slice!(0..-5), array[0]
+end
+
+
+def self.create_from_filename(filename)
+  array = filename.split(" - ")
+  self.new array[1].slice!(0..-5), array[0]
+end
 
 end
